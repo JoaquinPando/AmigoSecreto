@@ -6,6 +6,7 @@ let amigos = [];
 
 //funciones
 function agregarAmigo() {
+    soloLetras();
     let nombre = document.getElementById('amigo').value;
     if (nombre == "") {
         alert('Debe ingresar un nombre');
@@ -15,7 +16,7 @@ function agregarAmigo() {
         //añadirlo al array amigos
         amigos.push(nombre);
         //limpiar el input
-        document.getElementById('amigo').value = "";
+        limpiarInput()
         //mostrar la lista de amigos
         agregarAmigoLista()
     }
@@ -40,8 +41,7 @@ function agregarAmigoLista() {
         li.innerHTML = amigos[i];
         //agregar el li a la lista
         lista.appendChild(li);
-    }
-    
+    }    
 }
 
 function sortearAmigo() {
@@ -56,5 +56,17 @@ function sortearAmigo() {
     document.getElementById('resultado').innerHTML = amigos[ganador]; //mostrar el nombre del ganador
     limpiarLista(); //limpiar la lista de amigos
 }
+//función que detecta números y da una alerta
+function soloLetras(e) {
+    let valor = document.getElementById('amigo').value;
+    if (valor.match(/[0-9]/)) { //valor.match busca si hay numeros en el valor
+        alert('Solo se permiten letras');
+        limpiarInput();
+    }
+}
 
+//limpiar intup
+function limpiarInput() {
+    document.getElementById('amigo').value = "";
+}
 
